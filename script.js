@@ -2,7 +2,7 @@ let listElement = document.querySelector("#app ul"); // para adicionar o que foi
 let inputElement = document.querySelector("#app input"); // pegar o que foi digitado
 let buttonElement = document.querySelector("#app button");
 
-let tarefas = []; // craindo array para a lista de tarefas
+let tarefas = JSON.parse(localStorage.getItem("@listaTarefas")) || []; // craindo array para a lista de tarefas
 
 // adicionando as tarefas na ul>li
 
@@ -30,6 +30,8 @@ function renderTarefas() {
   });
 }
 
+renderTarefas();
+
 // adicionando uma operacao para criar a lista
 
 function adicionarTarefas() {
@@ -43,6 +45,8 @@ function adicionarTarefas() {
     inputElement.value = ""; // apaga o que foi digitado
 
     renderTarefas();
+
+    salvarDados();
   }
 }
 
@@ -53,4 +57,9 @@ buttonElement.onclick = adicionarTarefas;
 function deletarTarefa(posicao) {
   tarefas.splice(posicao, 1); // escolhendo o item que vai deletar e somente ele
   renderTarefas(); // renderizando novamente a lista atualizada após exclusão
+  salvarDados();
+}
+
+function salvarDados() {
+  localStorage.setItem("@listaTarefas", JSON.stringify(tarefas));
 }
