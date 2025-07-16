@@ -11,10 +11,21 @@ function renderTarefas() {
 
   tarefas.map((texto) => {
     // .map() -> percorre o que tem no array e pega ele recebendo um parâmetro que é o item digitado
-    let liElement = document.createElement("li");
+    let liElement = document.createElement("li"); // criar li
     let tarefaTexto = document.createTextNode(texto); // criar texto
 
+    let linkElement = document.createElement("a"); // criar botao excluir
+    linkElement.setAttribute("href", "#"); // definindo destino do link
+
+    let linkTexto = document.createTextNode("Excluir"); // editando texto do link
+    linkElement.appendChild(linkTexto); // aplicando texto ao link
+
+    let posicao = tarefas.indexOf(texto); // pegando a posicao da terefa
+
+    linkElement.setAttribute("onclick", `deletarTarefa(${posicao})`); // definindo o que o link faz
+
     liElement.appendChild(tarefaTexto); // coloar o texto na li
+    liElement.appendChild(linkElement); // colocar o link na frente da tarefa e dentro do li
     listElement.appendChild(liElement); // colocar o li na ul
   });
 }
@@ -36,3 +47,10 @@ function adicionarTarefas() {
 }
 
 buttonElement.onclick = adicionarTarefas;
+
+// deletando uma tarefa
+
+function deletarTarefa(posicao) {
+  tarefas.splice(posicao, 1); // escolhendo o item que vai deletar e somente ele
+  renderTarefas(); // renderizando novamente a lista atualizada após exclusão
+}
