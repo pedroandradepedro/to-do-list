@@ -24,7 +24,6 @@ body {
 
 #app ul {
   list-style: decimal;
-  justify-items: center;
 }
 
 #app li {
