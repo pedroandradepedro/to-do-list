@@ -23,7 +23,8 @@ body {
 }
 
 #app ul {
-  list-style: none;
+  list-style: decimal;
+  justify-items: center;
 }
 
 #app li {

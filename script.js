@@ -9,10 +9,10 @@ let tarefas = JSON.parse(localStorage.getItem("@listaTarefas")) || []; // craind
 function renderTarefas() {
   listElement.innerHTML = ""; // zerando o que esta na ul
 
-  tarefas.map((texto) => {
+  tarefas.map((tarefa) => {
     // .map() -> percorre o que tem no array e pega ele recebendo um parâmetro que é o item digitado
     let liElement = document.createElement("li"); // criar li
-    let tarefaTexto = document.createTextNode(texto); // criar texto
+    let tarefaTexto = document.createTextNode(tarefa); // criar texto
 
     let linkElement = document.createElement("a"); // criar botao excluir
     linkElement.setAttribute("href", "#"); // definindo destino do link
@@ -20,7 +20,7 @@ function renderTarefas() {
     let linkTexto = document.createTextNode("Excluir"); // editando texto do link
     linkElement.appendChild(linkTexto); // aplicando texto ao link
 
-    let posicao = tarefas.indexOf(texto); // pegando a posicao da terefa
+    let posicao = tarefas.indexOf(tarefa); // pegando a posicao da terefa
 
     linkElement.setAttribute("onclick", `deletarTarefa(${posicao})`); // definindo o que o link faz
 
